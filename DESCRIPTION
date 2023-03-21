@@ -1,0 +1,32 @@
+Type: Package
+Package: ForcedDisplacementStat
+Title: UNHCR Population Statistics Database 
+Version: 0.0.1
+Authors@R: c(
+    person("Edouard", "Legoupil", , "legoupil@unhcr.org", role = c("aut", "cre"))
+  )
+Maintainer: Edouard Legoupil <legoupil@unhcr.org>
+Description: This is a data package with all frames organised and
+    reshapped for easy consumptions in R. For more information, please see
+    consult
+    [https://www.unhcr.org/refugee-statistics/](https://www.unhcr.org/refugee-statistics).
+License: MIT + file LICENSE
+URL: https://edouard-legoupil.github.io/ForcedDisplacementStat/
+BugReports: https://github.com/edouard-legoupil/ForcedDisplacementStat/issues
+Imports: 
+    ckanr,
+    purrr,
+    readr,
+    here,
+    dplyr,
+    reshape2,
+    sinew,
+    tools
+Suggests: 
+    knitr,
+    testthat
+VignetteBuilder: 
+    knitr
+Encoding: UTF-8
+LazyData: TRUE
+RoxygenNote: 7.2.3

@@ -1,0 +1,30 @@
+url: ~
+template:
+  package: unhcrtemplate
+  bootstrap: 5
+
+navbar:
+  title: ForcedDisplacementStat
+    
+reference:
+- title: UNHCR Statistics Database
+  desc: Main Table from Refugee Data Finder - also available on https://data.humdata.org/dataset/unhcr-population-data-for-world
+- contents:
+  - end_year_population_totals 
+  - end_year_population_totals_long 
+  - demographics
+  - asylum_applications 
+  - asylum_decisions 
+  - asylum_decisions_long 
+  - solutions 
+  - solutions_long
+- title: Data Reference
+  desc: other Tables conveniently stored here
+- contents:
+  - migrants 
+  - reference 
+  - locpcode
+- title: Update Data 
+  desc: Refresh the data every 6 months.. 
+  contents:
+  - starts_with("update_")    
