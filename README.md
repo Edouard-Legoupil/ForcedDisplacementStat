@@ -1,4 +1,4 @@
-# [`{ForcedDisplacementStat}`](https://unhcr.github.io/ForcedDisplacementStat/): A data package with UNHCR statistics Database <img src="man/figures/logo.png" width="200" align="right" />
+# [`{ForcedDisplacementStat}`](https://edouard-legoupil.github.io/ForcedDisplacementStat/): A data package with UNHCR Statistics Database <img src="man/figures/logo.png" width="200" align="right" />
 
 
 The package is inspired from tutorial @ https://r-pkgs.org/data.html (the code used to build the package is in `data-raw/build.R`). Data are pulled from HDX @ [unhcr-population-data-for-world](https://data.humdata.org/dataset/unhcr-population-data-for-world) and are then conveniently packaged for R users intending to build __data stories__. Note, that you can also explore data through  [Refugee Data Finder](https://www.unhcr.org/refugee-statistics/).
@@ -11,7 +11,6 @@ The package is inspired from tutorial @ https://r-pkgs.org/data.html (the code u
  If you are on Windows, you might first need to install [Rtools](https://cran.r-project.org/bin/windows/Rtools/) on the top of [R](https://cran.r-project.org/bin/windows/base/) and [Rstudio](https://posit.co/download/rstudio-desktop/) in order to install the package locally.
 
 ```{r}
-
 install.packages("pak")
 pak::pkg_install("edouard-legoupil/ForcedDisplacementStat")
 ```
