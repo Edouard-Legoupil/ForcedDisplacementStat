@@ -15,6 +15,7 @@ URL: https://edouard-legoupil.github.io/ForcedDisplacementStat/
 BugReports: https://github.com/edouard-legoupil/ForcedDisplacementStat/issues
 Imports: 
     ckanr,
+    fs,
     purrr,
     readr,
     here,

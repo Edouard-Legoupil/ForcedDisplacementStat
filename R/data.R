@@ -270,3 +270,29 @@
 #'}
 #' @details DETAILS
 "locpcode"
+
+
+#' @title wb_data
+#' @description Data Extracted with WDI::WDI package
+#' @format A data frame with 8778 rows and 16 variables:
+#' \describe{
+#'   \item{\code{country}}{character COLUMN_DESCRIPTION}
+#'   \item{\code{iso2c}}{character COLUMN_DESCRIPTION}
+#'   \item{\code{iso_3}}{character COLUMN_DESCRIPTION}
+#'   \item{\code{Year}}{double COLUMN_DESCRIPTION}
+#'   \item{\code{status}}{character COLUMN_DESCRIPTION}
+#'   \item{\code{lastupdated}}{character COLUMN_DESCRIPTION}
+#'   \item{\code{SP.POP.TOTL}}{double COLUMN_DESCRIPTION}
+#'   \item{\code{NY.GDP.MKTP.CD}}{double COLUMN_DESCRIPTION}
+#'   \item{\code{NY.GDP.PCAP.CD}}{double COLUMN_DESCRIPTION}
+#'   \item{\code{NY.GNP.PCAP.CD}}{double COLUMN_DESCRIPTION}
+#'   \item{\code{region}}{character COLUMN_DESCRIPTION}
+#'   \item{\code{capital}}{character COLUMN_DESCRIPTION}
+#'   \item{\code{longitude}}{character COLUMN_DESCRIPTION}
+#'   \item{\code{latitude}}{character COLUMN_DESCRIPTION}
+#'   \item{\code{income}}{character COLUMN_DESCRIPTION}
+#'   \item{\code{lending}}{character COLUMN_DESCRIPTION} 
+#'}
+#' @source \url{http://somewhere.important.com/}
+"wb_data"
+ 

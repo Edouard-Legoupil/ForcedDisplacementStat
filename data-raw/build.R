@@ -359,3 +359,24 @@ tools::resaveRdaFiles(here::here("data","asylum_decisions_long.RData"),compress=
 # Note: significantly better compression could be obtained
 #by using R CMD build --resave-data
 #tools::resaveRdaFiles(here::here("data","migrants.RData"),compress="xz") 
+
+
+
+### Add WB data 
+
+wb_data <- WDI::WDI(#country = c(country_asylum_iso3c ) ,
+                    country = "all",
+                    indicator=c("SP.POP.TOTL", "NY.GDP.MKTP.CD", "NY.GDP.PCAP.CD", "NY.GNP.PCAP.CD"),
+                    start = 1990, 
+                    end = 2023,
+                    extra = TRUE)   
+# Renaming variables for further matching
+names(wb_data)[3] <- "iso_3"
+names(wb_data)[4] <- "Year"
+wb_data$Year <- as.numeric(wb_data$Year)
+
+sinew::makeOxygen(wb_data, add_fields = "source")
+save(wb_data, file =  here::here("data","wb_data.RData"))
+# Note: significantly better compression could be obtained
+#by using R CMD build --resave-data
+tools::resaveRdaFiles(here::here("data","wb_data.RData"),compress="xz")
