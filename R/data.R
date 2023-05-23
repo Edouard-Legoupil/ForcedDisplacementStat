@@ -293,6 +293,6 @@
 #'   \item{\code{income}}{character COLUMN_DESCRIPTION}
 #'   \item{\code{lending}}{character COLUMN_DESCRIPTION} 
 #'}
-#' @source \url{http://somewhere.important.com/}
+#' @source \url{http://data.worldbank.com}
 "wb_data"
  

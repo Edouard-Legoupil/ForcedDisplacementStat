@@ -26,7 +26,7 @@ A data frame with 8778 rows and 16 variables:
 }
 }
 \source{
-\url{http://somewhere.important.com/}
+\url{http://data.worldbank.com}
 }
 \usage{
 wb_data
