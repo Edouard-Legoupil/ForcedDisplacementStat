@@ -38,21 +38,37 @@ update_dataset <- function(){
     ## Displaced ##########
     cat(paste0("Reading end_year_population_totals_residing_world \n"))
     end_year_population_totals <- read_sans_hxl(file =  here::here("data-raw","end_year_population_totals_residing_world.csv"))
-    
+    names(end_year_population_totals)
     
     # Rename column to have proper Variable names
-    end_year_population_totals <- dplyr::rename(end_year_population_totals, c("Country of Origin Code"="CountryOriginCode",
-                                           "Country of Asylum Code"="CountryAsylumCode", 
-                                           "Country of Origin Name"="CountryOriginName",
-                                           "Country of Asylum Name"="CountryAsylumName", 
-                                           "Refugees"="REF", 
-                                           "Internally displaced persons"="IDP", 
-                                           "Asylum seekers"="ASY",
-                                           "Others of concern to UNHCR"="OOC",
-                                           "Stateless Persons"="STA",    
-                                          #  "Venezuelans Displaced Abroad"="VDA"
-                                           "Host community" = "HCO",
-                                           "Other people in need of international protection"="OIP"))
+    end_year_population_totals <- dplyr::rename(end_year_population_totals, 
+                                          # c("Country of Origin Code"="CountryOriginCode",
+                                          #  "Country of Asylum Code"="CountryAsylumCode", 
+                                          #  "Country of Origin Name"="CountryOriginName",
+                                          #  "Country of Asylum Name"="CountryAsylumName", 
+                                          #  "Refugees"="REF", 
+                                          #  "Internally displaced persons"="IDP", 
+                                          #  "Asylum seekers"="ASY",
+                                          #  "Others of concern to UNHCR"="OOC",
+                                          #  "Stateless Persons"="STA",    
+                                          # #  "Venezuelans Displaced Abroad"="VDA"
+                                          #  "Host community" = "HCO",
+                                          #  "Other people in need of international protection"="OIP")
+                                          
+                                          
+                                          c("CountryOriginCode"="Country of Origin Code",
+                                            "CountryAsylumCode"="Country of Asylum Code", 
+                                            "CountryOriginName"="Country of Origin Name",
+                                            "CountryAsylumName"="Country of Asylum Name", 
+                                            "REF"="Refugees", 
+                                           "IDP"= "Internally displaced persons", 
+                                            "ASY"="Asylum seekers",
+                                            "OOC"="Others of concern to UNHCR",
+                                           "STA"= "Stateless Persons",    
+                                            #  "Venezuelans Displaced Abroad"="VDA"
+                                            "HCO"= "Host community" ,
+                                            "OIP"="Other people in need of international protection")
+                                          )
     cat(names(end_year_population_totals))
     
     sinew::makeOxygen(end_year_population_totals, add_fields = "source")
@@ -84,7 +100,7 @@ update_dataset <- function(){
     end_year_population_totals_long$Population.type.label <- ""
     end_year_population_totals_long$Population.type.label[end_year_population_totals_long$Population.type=="REF"] <- "Refugees"
     end_year_population_totals_long$Population.type.label[end_year_population_totals_long$Population.type=="IDP"] <- "Internally displaced persons"
-    end_year_population_totals_long$Population.type.label[end_year_population_totals_long$Population.type=="ASY"] <- "Asylum seekers"
+    end_year_population_totals_long$Population.type.label[end_year_population_totals_long$Population.type=="ASY"] <- "Asylum-seekers"
     end_year_population_totals_long$Population.type.label[end_year_population_totals_long$Population.type=="OOC"] <- "Others of concern to UNHCR"
     end_year_population_totals_long$Population.type.label[end_year_population_totals_long$Population.type=="STA"] <- "Stateless Persons"
     #end_year_population_totals_long$Population.type.label[end_year_population_totals_long$Population.type=="VDA"] <- "Venezuelans Displaced Abroad"
@@ -94,7 +110,7 @@ update_dataset <- function(){
     end_year_population_totals_long$Population.type.label.short <- ""
     end_year_population_totals_long$Population.type.label.short[end_year_population_totals_long$Population.type=="REF"] <- "Refugees"
     end_year_population_totals_long$Population.type.label.short[end_year_population_totals_long$Population.type=="IDP"] <- "IDPs"
-    end_year_population_totals_long$Population.type.label.short[end_year_population_totals_long$Population.type=="ASY"] <- "Asylum seekers"
+    end_year_population_totals_long$Population.type.label.short[end_year_population_totals_long$Population.type=="ASY"] <- "Asylum-seekers"
     end_year_population_totals_long$Population.type.label.short[end_year_population_totals_long$Population.type=="OOC"] <- "Others of concern"
     end_year_population_totals_long$Population.type.label.short[end_year_population_totals_long$Population.type=="STA"] <- "Stateless Persons"
     #end_year_population_totals_long$Population.type.label.short[end_year_population_totals_long$Population.type=="VDA"] <- "Venezuelans Abroad"
@@ -119,14 +135,24 @@ update_dataset <- function(){
     
     sinew::makeOxygen(solutions_residing, add_fields = "source")
     # Rename column to have proper Variable names
-    solutions <- dplyr::rename(solutions_residing, c("Country of Origin Code"="CountryOriginCode",
-                                                                             "Country of Asylum Code"="CountryAsylumCode", 
-                                                                             "Country of Origin Name"="CountryOriginName",
-                                                                             "Country of Asylum Name"="CountryAsylumName", 
-                                                                             "Resettlement arrivals"="RST",
-                                                                             "Refugee returns"="RET",
-                                                                             "Naturalisation"="NAT",
-                                                                             "IDP returns"="RDP" ))
+    solutions <- dplyr::rename(solutions_residing, 
+                               # c("Country of Origin Code"="CountryOriginCode",
+                               #                                               "Country of Asylum Code"="CountryAsylumCode", 
+                               #                                               "Country of Origin Name"="CountryOriginName",
+                               #                                               "Country of Asylum Name"="CountryAsylumName", 
+                               #                                               "Resettlement arrivals"="RST",
+                               #                                               "Refugee returns"="RET",
+                               #                                               "Naturalisation"="NAT",
+                               #                                               "IDP returns"="RDP" )
+                               c("CountryOriginCode"="Country of Origin Code",
+                                 "CountryAsylumCode"="Country of Asylum Code", 
+                                 "CountryOriginName"="Country of Origin Name",
+                                 "CountryAsylumName"="Country of Asylum Name", 
+                                 "RST"="Resettlement arrivals",
+                                 "RET"="Refugee returns",
+                                 "NAT"="Naturalisation",
+                                 "RDP" ="IDP returns")
+                               )
     
     save(solutions, file =  here::here("data","solutions.RData"))
     sinew::makeOxygen(solutions, add_fields = "source")
@@ -172,26 +198,47 @@ update_dataset <- function(){
     
     sinew::makeOxygen(demographics_residing, add_fields = "source")
     # Rename column to have proper Variable names
-    demographics <- dplyr::rename(demographics_residing, c("Country of Origin Code"="CountryOriginCode",
-                                                             "Country of Asylum Code"="CountryAsylumCode", 
-                                                             "Country of Origin Name"="CountryOriginName",
-                                                             "Country of Asylum Name"="CountryAsylumName",  
-                                                             "Population Type"= "Population.type",
-                                                             "Female 0-4"="Female04", 
-                                                             "Female 5-11"="Female511", 
-                                                             "Female 12-17"="Female1217", 
-                                                             "Female 18-59"="Female1859",
-                                                             "Female 60 or more"="Female60ormore",
-                                                             "Female Unknown"="FemaleUnknown",
-                                                             "Female Total"="FemaleTotal", 
-                                                             "Male 0-4"="Male04", 
-                                                             "Male 5-11"="Male511", 
-                                                             "Male 12-17"="Male1217", 
-                                                             "Male 18-59"="Male1859",
-                                                             "Male 60 or more"="Male60ormore",
-                                                             "Male Unknown"="MaleUnknown",
-                                                             "Male Total"="MaleTotal")
-                                                             )
+    demographics <- dplyr::rename(demographics_residing, 
+                                  # c("Country of Origin Code"="CountryOriginCode",
+                                  #                            "Country of Asylum Code"="CountryAsylumCode", 
+                                  #                            "Country of Origin Name"="CountryOriginName",
+                                  #                            "Country of Asylum Name"="CountryAsylumName",  
+                                  #                            "Population Type"= "Population.type",
+                                  #                            "Female 0-4"="Female04", 
+                                  #                            "Female 5-11"="Female511", 
+                                  #                            "Female 12-17"="Female1217", 
+                                  #                            "Female 18-59"="Female1859",
+                                  #                            "Female 60 or more"="Female60ormore",
+                                  #                            "Female Unknown"="FemaleUnknown",
+                                  #                            "Female Total"="FemaleTotal", 
+                                  #                            "Male 0-4"="Male04", 
+                                  #                            "Male 5-11"="Male511", 
+                                  #                            "Male 12-17"="Male1217", 
+                                  #                            "Male 18-59"="Male1859",
+                                  #                            "Male 60 or more"="Male60ormore",
+                                  #                            "Male Unknown"="MaleUnknown",
+                                  #                            "Male Total"="MaleTotal")
+                                  #                            )
+    c("CountryOriginCode"="Country of Origin Code",
+      "CountryAsylumCode"="Country of Asylum Code", 
+      "CountryOriginName"="Country of Origin Name",
+      "CountryAsylumName"="Country of Asylum Name", 
+       "Population.type" = "Population Type",
+      "Female04"="Female 0-4", 
+      "Female511" = "Female 5-11", 
+      "Female1217" = "Female 12-17", 
+      "Female1859" = "Female 18-59",
+      "Female60ormore" = "Female 60 or more",
+      "FemaleUnknown" = "Female Unknown",
+      "FemaleTotal" = "Female Total", 
+      "Male04" = "Male 0-4", 
+      "Male511" = "Male 5-11", 
+      "Male1217" = "Male 12-17", 
+      "Male1859" = "Male 18-59",
+      "Male60ormore" = "Male 60 or more",
+      "MaleUnknown" = "Male Unknown",
+      "MaleTotal" = "Male Total")
+    )
     
     
     #names(demographics)
@@ -240,19 +287,31 @@ update_dataset <- function(){
     sinew::makeOxygen(asylum_applications_residing, add_fields = "source")
     
     # Rename column to have proper Variable names
-    asylum_applications <- dplyr::rename(asylum_applications_residing, c("Country of Origin Code"="CountryOriginCode",
-                                                                        "Country of Asylum Code"="CountryAsylumCode", 
-                                                                        "Country of Origin Name"="CountryOriginName",
-                                                                        "Country of Asylum Name"="CountryAsylumName", 
-                                                                        "Procedure Type"="ProcedureType",                      
-                                                                        "Procedure Name"="ProcedureName",                      
-                                                                        "Application Type Code"="ApplicationTypeCode",               
-                                                                        "Application Type"="ApplicationType",                    
-                                                                        "Application Data Type"="ApplicationDataType",               
-                                                                        "Application Data"="ApplicationData",                    
-                                                                        "Application Average Persons Per Case"="ApplicationAveragePersonsPerCase",
-                                                                        "Number of Applications"="NumberApplications" 
-    )
+    asylum_applications <- dplyr::rename(asylum_applications_residing,
+                                         # c("Country of Origin Code"="CountryOriginCode",
+                                         #                                "Country of Asylum Code"="CountryAsylumCode", 
+                                         #                                "Country of Origin Name"="CountryOriginName",
+                                         #                                "Country of Asylum Name"="CountryAsylumName", 
+                                         #                                "Procedure Type"="ProcedureType",                      
+                                         #                                "Procedure Name"="ProcedureName",                      
+                                         #                                "Application Type Code"="ApplicationTypeCode",               
+                                         #                                "Application Type"="ApplicationType",                    
+                                         #                                "Application Data Type"="ApplicationDataType",               
+                                         #                                "Application Data"="ApplicationData",                    
+                                         #                                "Application Average Persons Per Case"="ApplicationAveragePersonsPerCase",
+                                         #                                "Number of Applications"="NumberApplications"   )
+                                         c("CountryOriginCode"="Country of Origin Code",
+                                           "CountryAsylumCode"="Country of Asylum Code", 
+                                           "CountryOriginName"="Country of Origin Name",
+                                           "CountryAsylumName"="Country of Asylum Name", 
+                                           "ProcedureType"= "Procedure Type",                      
+                                           "ProcedureName" = "Procedure Name",                      
+                                           "ApplicationTypeCode" ="Application Type Code",               
+                                           "ApplicationType" = "Application Type",                    
+                                           "ApplicationDataType"= "Application Data Type",               
+                                           "ApplicationData" = "Application Data",                    
+                                           "ApplicationAveragePersonsPerCase" ="Application Average Persons Per Case",
+                                           "NumberApplications" = "Number of Applications"   )
     )
     
     asylum_applications$ApplicationType[asylum_applications$ApplicationTypeCode == "V"] <- "Various"
@@ -278,20 +337,34 @@ update_dataset <- function(){
     
     sinew::makeOxygen(asylum_decisions_residing, add_fields = "source")
     # Rename column to have proper Variable names
-    asylum_decisions <- dplyr::rename(asylum_decisions_residing, c("Country of Origin Code"="CountryOriginCode",
-                                                                   "Country of Asylum Code"="CountryAsylumCode", 
-                                                                   "Country of Origin Name"="CountryOriginName",
-                                                                   "Country of Asylum Name"="CountryAsylumName", 
-                                                                   "Procedure Type"="ProcedureType",                    
-                                                                   "Procedure Name"="ProcedureName",                    
-                                                                   "Decision Type Code"="DecisionTypeCode",                
-                                                                   "Decision Data Type"="DecisionDataType",                
-                                                                   "Decision Data"="DecisionData",                     
-                                                                   "Decisions Average Persons Per Case"= "DecisionsAveragePersonsPerCase",
-                                                                   "Complementary Protection"="ComplementaryProtection",          
-                                                                   "Otherwise Closed" ="OtherwiseClosed",                
-                                                                   "Total Decided" = "TotalDecided"
-                                                                   )
+    asylum_decisions <- dplyr::rename(asylum_decisions_residing,
+
+                                      # c("Country of Origin Code"="CountryOriginCode",
+                                      #                              "Country of Asylum Code"="CountryAsylumCode", 
+                                      #                              "Country of Origin Name"="CountryOriginName",
+                                      #                              "Country of Asylum Name"="CountryAsylumName", 
+                                      #                              "Procedure Type"="ProcedureType",                    
+                                      #                              "Procedure Name"="ProcedureName",                    
+                                      #                              "Decision Type Code"="DecisionTypeCode",                
+                                      #                              "Decision Data Type"="DecisionDataType",                
+                                      #                              "Decision Data"="DecisionData",                     
+                                      #                              "Decisions Average Persons Per Case"= "DecisionsAveragePersonsPerCase",
+                                      #                              "Complementary Protection"="ComplementaryProtection",          
+                                      #                              "Otherwise Closed" ="OtherwiseClosed",                
+                                      #                              "Total Decided" = "TotalDecided"   )
+                                      c("CountryOriginCode"="Country of Origin Code",
+                                        "CountryAsylumCode"="Country of Asylum Code", 
+                                        "CountryOriginName"="Country of Origin Name",
+                                        "CountryAsylumName"="Country of Asylum Name", 
+                                       "ProcedureType" =  "Procedure Type",                    
+                                      "ProcedureName" =   "Procedure Name",                    
+                                      "DecisionTypeCode" =  "Decision Type Code",                
+                                      "DecisionDataType" =  "Decision Data Type",                
+                                      "DecisionData" =   "Decision Data",                     
+                                      "DecisionsAveragePersonsPerCase" =  "Decisions Average Persons Per Case",
+                                        "ComplementaryProtection" ="Complementary Protection",          
+                                       "OtherwiseClosed" = "Otherwise Closed" ,                
+                                       "TotalDecided" = "Total Decided"   )
     )
     
     
